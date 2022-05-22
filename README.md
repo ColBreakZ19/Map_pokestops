@@ -21,5 +21,7 @@ https://script.google.com/macros/s/AKfycby-f4oMx6gWJaEqJScJ3c--R1sWS_QnCyouzpHuw
 
 On the right pannel, click on "PoGo Actions", then "Import Gyms & Pokestops" and load Install <a href="https://github.com/ColBreakZ19/Map_pokestops/blob/main/IITC-pogo-LyonSave.json">This file</a>
 
+Click on "PoGo Settings" and check "This is PoGo!"
 
-Awersom !
+
+Awersome !
