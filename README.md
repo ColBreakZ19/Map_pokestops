@@ -1,16 +1,16 @@
-# Map_pokestops
+## Requirements
+
+Install <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=fr">Tampermonkey</a>
 
 
-Install TamperMonkey
-
-
-Install PogoTools
+Install <a href="https://iitc.app/build/release/total-conversion-build.user.js">IITC: Ingress intel map total conversion</a>
 
 Install the extention
 
 
 ## A. Install the plugin for IITC 
-If you want to make use of an existing sheet. Install the <a href="https://gitlab.com/AlfonsoML/wayfarer/raw/master/wayfarer-planner.user.js?inline=false">userscript</a>, load IITC and enter the scripturl.<br/>
+If you want to make use of an existing sheet. Install the <a href="https://github.com/ColBreakZ19/Map_pokestops/raw/main/Pannel%20de%20Controle%20Wayfarer%20(Commun).user.js">userscript</a>, load IITC and enter the scripturl.<br/>
+
 ## B. If you want to create your own sheet, you should follow these instructions:
 
  1. Go to: https://docs.google.com/spreadsheets/u/0/
