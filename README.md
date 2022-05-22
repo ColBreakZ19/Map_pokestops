@@ -8,6 +8,9 @@ Install PogoTools
 
 Install the extention
 
+
+## A. Install the plugin for IITC 
+If you want to make use of an existing sheet. Install the <a href="https://gitlab.com/AlfonsoML/wayfarer/raw/master/wayfarer-planner.user.js?inline=false">userscript</a>, load IITC and enter the scripturl.<br/>
 ## B. If you want to create your own sheet, you should follow these instructions:
 
  1. Go to: https://docs.google.com/spreadsheets/u/0/
