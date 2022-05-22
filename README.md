@@ -5,6 +5,9 @@ Install <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkk
 
 Install <a href="https://iitc.app/build/release/total-conversion-build.user.js">IITC: Ingress intel map total conversion</a>
 
+Install <a href="https://gitlab.com/AlfonsoML/pogo-s2/raw/master/s2check.user.js">PoGo Tools</a>
+
+
 Install <a href="https://github.com/ColBreakZ19/Map_pokestops/raw/main/Pannel%20de%20Controle%20Wayfarer%20(Commun).user.js">This extention</a>
 
 ## Run extentions
