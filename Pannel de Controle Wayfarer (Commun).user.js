@@ -1,8 +1,8 @@
 // ==UserScript==
 // @id           wayfarer-planner@ColBreakZ
-// @name         Pannel de Controle Wayfarer (Commun)
+// @name         Pannel de Controle Wayfarer (community)
 // @category     Layer
-// @version      1.0
+// @version      1.1
 // @description  Wayfarer Proposal Lyon
 // @match        https://intel.ingress.com/*
 // @grant none
@@ -148,7 +148,7 @@
 			}
 		});
 	}
-//afficher sur la map
+
 	function drawMarker(candidate) {
 		if (candidate != undefined && candidate.lat != '' && candidate.lng != '') {
 			addMarkerToLayer(candidate);
@@ -228,7 +228,7 @@
 	}
 
 	function removeExistingTitle(guid) {
-	}
+    }
 
 	function removeExistingMarker(guid) {
 	}
@@ -247,15 +247,6 @@
 			id: candidate.id,
 			data: candidate,
 			draggable: true
-		});
-
-		marker.on('dragend', function (e) {
-			const data = e.target.options.data;
-			const latlng = marker.getLatLng();
-			data.lat = latlng.lat;
-			data.lng = latlng.lng;
-
-			drawInputPopop(latlng, data);
 		});
 
 		marker.on('dragstart', function (e) {
@@ -286,7 +277,6 @@
 	function onMapClick(e) {
 	}
 
-    //pop up map
 	function drawInputPopop(latlng, markerData) {
 		const formpopup = L.popup();
 
@@ -298,6 +288,7 @@
 		let lng = '';
 		let status = 'potential';
 		let imageUrl = '';
+        let player = 'Player';
 
 		if (markerData !== undefined) {
 			id = markerData.id;
@@ -308,6 +299,7 @@
 			imageUrl = markerData.candidateimageurl;
 			lat = parseFloat(markerData.lat).toFixed(6);
 			lng = parseFloat(markerData.lng).toFixed(6);
+            player = markerData.player;
 		} else {
 			lat = latlng.lat.toFixed(6);
 			lng = latlng.lng.toFixed(6);
@@ -320,22 +312,33 @@
 			.join('');
 
 		let formContent = `<div class="wayfarer-planner-popup"><form id="submit-to-wayfarer">
-			<label><u>Status</u>
-			<label>${status}
+			<label>Status
+			<select name="status">${options}</select>
 			</label>
-			<label><u>Titre</u>
-			<label>${title}
+			<label>Title
+			<input name="title" type="text" autocomplete="off" placeholder="Title (required)" required value="${title}">
 			</label>
-			<label><u>Description</u>
-			<label>${description}
+			<label>Description
+			<input name="description" type="text" autocomplete="off" placeholder="Description" value="${description}">
 			</label>
-            </label>
-            </label>
-			</div>
-			<input name="id" type="hidden" value="${id}">
-			<input name="lat" type="hidden" value="${lat}">
-			<input name="lng" type="hidden" value="${lng}">
+			<div class='wayfarer-expander' title='Click to expand additional fields'>»</div>
+			<div class='wayfarer-extraData'>
+			<label>Submitted date
+			<input name="submitteddate" type="text" autocomplete="off" placeholder="jour mois année" value="${submitteddate}">
+			</label>
+			<label>Image
+			<input name="candidateimageurl" type="text" autocomplete="off" placeholder="http://?.googleusercontent.com/***" value="${imageUrl}">
+			</label>
+			<input name="id" type="hidden" value=${id}>
+            <label>lattitude
+            <input name="lat" type="text" value=${lat}>
+            <label>Longitude
+			<input name="lng" type="text" value=${lng}>
+            <label>Player
+            <input name="player" type="text" value=${player}>
 			<input name="nickname" type="hidden" value="${window.PLAYER.nickname}">
+            </div>
+			<button type="submit" id='wayfarer-submit'>Send</button>
 			</form>`;
 
 		if (id !== '') {
@@ -383,7 +386,7 @@
 
 		return markerTemplate.replace(/%COLOR%/g, color);
 	}
-//essential draw
+
 	function getGenericMarkerIcon(color, className) {
 		return L.divIcon({
 			iconSize: new L.Point(25, 41),
@@ -485,6 +488,19 @@
 			settings.showInteractionRadius = chkShowInteractRadius.checked;
 			saveSettings();
 			drawMarkers();
+		});
+
+		const chkPlaceMarkers = div.querySelector('#chkPlaceMarkers');
+		chkPlaceMarkers.checked = isPlacingMarkers;
+		chkPlaceMarkers.addEventListener('change', e => {
+			isPlacingMarkers = chkPlaceMarkers.checked;
+			if (!isPlacingMarkers && editmarker != null) {
+				map.closePopup();
+				map.removeLayer(editmarker);
+				editmarker = null;
+			}
+			//settings.isPlacingMarkers = chkPlaceMarkers.checked;
+			//saveSettings();
 		});
 
 		if (!settings.scriptURL) {
@@ -611,7 +627,7 @@
 		const toolbox = document.getElementById('toolbox');
 
 		const toolboxLink = document.createElement('a');
-		toolboxLink.textContent = 'Panel Wayfarer';
+		toolboxLink.textContent = 'Panel Wayfarer (Test)';
 		toolboxLink.title = 'Panel de controle Wayfarer';
 		toolboxLink.addEventListener('click', showDialog);
 		toolbox.appendChild(toolboxLink);
