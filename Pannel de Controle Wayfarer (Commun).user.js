@@ -627,7 +627,7 @@
 		const toolbox = document.getElementById('toolbox');
 
 		const toolboxLink = document.createElement('a');
-		toolboxLink.textContent = 'Panel Wayfarer (Test)';
+		toolboxLink.textContent = 'Panel Wayfarer';
 		toolboxLink.title = 'Panel de controle Wayfarer';
 		toolboxLink.addEventListener('click', showDialog);
 		toolbox.appendChild(toolboxLink);
